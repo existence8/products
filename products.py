@@ -1,13 +1,21 @@
 #PYTHON輕鬆學會寫程式#61 計帳程式練習
+
 products = []
 
-#讀取舊檔 (#65-66)
-with open('products.csv', 'r', encoding='utf-8') as f:
-	for line in f:
-		if '商品,價格' in line:
-			continue #continue是跳過本次迴圈中剩餘動作，繼續下一迴圈
-		products.append(line.strip().split(','))
-	print(products)
+#檢查舊檔是否存在
+import os #operating system
+if os.path.isfile('products.csv'):
+	print('找到舊檔!')
+
+	#讀取舊檔 (#65-66)
+	with open('products.csv', 'r', encoding='utf-8') as f:
+		for line in f:
+			if '商品,價格' in line:
+				continue #continue是跳過本次迴圈中剩餘動作，繼續下一迴圈
+			products.append(line.strip().split(','))
+		print(products)
+else:
+	print('找不到舊案!')
 
 #使用者輸入
 while True:
