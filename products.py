@@ -1,6 +1,15 @@
 #PYTHON輕鬆學會寫程式#61 計帳程式練習
 products = []
 
+#讀取舊檔 (#65-66)
+with open('products.csv', 'r', encoding='utf-8') as f:
+	for line in f:
+		if '商品,價格' in line:
+			continue #continue是跳過本次迴圈中剩餘動作，繼續下一迴圈
+		products.append(line.strip().split(','))
+	print(products)
+
+#使用者輸入
 while True:
 	name = input('請輸入商品名稱：')
 	if name == 'q':
@@ -10,9 +19,9 @@ while True:
 	products.append([name, price])
 print(products)
 
+#印出所有購買記錄
 for p in products:
 	print(p[0], '的價格是', p[1])
-#這邊印出每個p裡的第一格，也就是商品名稱
 
 #62寫入檔案
 with open('products.csv', 'w', encoding='utf-8') as f:
